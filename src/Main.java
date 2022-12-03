@@ -3,21 +3,21 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Main {
+abstract class Main extends Result {
 
     public static void main(String[] args) {
         // Frame and Panel
         JFrame frame = new JFrame("My UI Frame");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel panelTitle = new JPanel(new FlowLayout());
-        JPanel panelOne = new JPanel(new GridLayout(2,2,1,1));
+        JPanel panelOne = new JPanel(new GridLayout(2, 2, 1, 1));
         JPanel panelTwo = new JPanel(new FlowLayout());
         JButton button = new JButton("Click to See your Age!");
 
         // Setting the panel sizes
-        panelTitle.setBounds(10,10,380,40);
-        panelOne.setBounds(10,60,380,80);
-        panelTwo.setBounds(10,200,380,40);
+        panelTitle.setBounds(10, 10, 380, 40);
+        panelOne.setBounds(10, 60, 380, 80);
+        panelTwo.setBounds(10, 200, 380, 40);
 
         // Color for visualization only
         panelTitle.setBackground(Color.cyan);
@@ -28,19 +28,19 @@ public class Main {
 
         JTextField tFieldOne, tFieldTwo;
         tFieldOne = new JTextField(20);
-        tFieldOne.setPreferredSize(new Dimension(80,20));
+        tFieldOne.setPreferredSize(new Dimension(80, 20));
         tFieldTwo = new JTextField(20);
-        tFieldTwo.setPreferredSize(new Dimension(80,20));
+        tFieldTwo.setPreferredSize(new Dimension(80, 20));
 
         labelTitle = new JLabel("WHAT'S MY AGE?:", JLabel.CENTER);
         labelOne = new JLabel("Year Today");
         labelTwo = new JLabel("Year You Were Born");
 
 
-        labelTitle.setBounds(10,10,90,20);
-        labelOne.setBounds(10,10,90,20);
+        labelTitle.setBounds(10, 10, 90, 20);
+        labelOne.setBounds(10, 10, 90, 20);
         tFieldOne.setBounds(5, 5, 100, 100);
-        labelTwo.setBounds(10,10,90,20);
+        labelTwo.setBounds(10, 10, 90, 20);
         tFieldTwo.setBounds(5, 5, 100, 100);
 
         panelTitle.add(labelTitle);
@@ -50,14 +50,14 @@ public class Main {
         panelOne.add(labelTwo);
         panelOne.add(tFieldTwo);
 
-        button.setBounds(10,10,90,20);
+        button.setBounds(10, 10, 90, 20);
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //System.out.println("Button Clicked");
                 //System.out.println(tFieldOne.getText());
                 //System.out.println(tFieldTwo.getText());
-                int result = computeValue(tFieldOne.getText(),tFieldTwo.getText());
+                int result = computeValue(tFieldOne.getText(), tFieldTwo.getText());
                 //System.out.println(result);
                 displayMessage(String.valueOf(result));
             }
@@ -76,7 +76,7 @@ public class Main {
         // set size to half of screen
         //frame.setSize(width/2, height/2);
 
-        frame.setSize(400,300);
+        frame.setSize(400, 300);
         frame.setResizable(false);
         frame.setLayout(null);
 
@@ -84,13 +84,10 @@ public class Main {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
     }
-    public static int computeValue(String value1, String value2){
-        int val1 = Integer.parseInt(value1);
-        int val2 = Integer.parseInt(value2);
-        int difference = val1 - val2;
-        return difference;
-    }
-    public static void displayMessage(String message){
-        JOptionPane.showMessageDialog( null, message, "Result" , JOptionPane.INFORMATION_MESSAGE );
+
+    abstract class Methods {
+        public void displayMessage() {
+            System.out.println("Answer");
+        }
     }
 }
